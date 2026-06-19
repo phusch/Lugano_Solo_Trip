@@ -1,0 +1,9 @@
+{
+  "name": "24 Stunden in Lugano",
+  "short_name": "Lugano Trip",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#fbf7ed",
+  "theme_color": "#0b355b",
+  "icons": [{"src":"assets/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}

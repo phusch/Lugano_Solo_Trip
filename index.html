@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0c355a">
+  <meta name="description" content="24 Stunden in Lugano – persönlicher Solo-Reiseplan und Recherchen ab Hotel Gabbani">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <title>24 Stunden in Lugano</title>
+  <style>
+    :root{
+      --navy:#0b355b;
+      --navy-2:#153f64;
+      --lake:#bfe1ef;
+      --lake-2:#e7f4f8;
+      --cream:#fbf7ed;
+      --paper:#fffdf8;
+      --terracotta:#c75d22;
+      --gold:#ba7e2c;
+      --green:#2d765b;
+      --ink:#192635;
+      --muted:#61707d;
+      --line:#ddcfb9;
+      --shadow:0 18px 45px rgba(11,53,91,.12);
+      --radius:22px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at top right, rgba(191,225,239,.52), transparent 30rem),
+        linear-gradient(180deg,#f5fbfd 0,#fbf7ed 34rem,#f8f3e8 100%);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,Helvetica,sans-serif;
+      line-height:1.45;
+    }
+    button,a{font:inherit}
+    a{color:inherit}
+    .app{max-width:1180px;margin:auto;padding:18px 18px 60px}
+    .hero{
+      position:relative;
+      min-height:360px;
+      border-radius:30px;
+      overflow:hidden;
+      background:
+        linear-gradient(90deg,rgba(255,253,248,.98) 0%,rgba(255,253,248,.90) 44%,rgba(255,253,248,.05) 72%),
+        url('assets/lugano-see.jpg') center/cover;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(186,126,44,.28);
+      display:grid;
+      grid-template-columns:minmax(0,1.25fr) minmax(260px,.75fr);
+      gap:28px;
+      padding:42px;
+    }
+    .eyebrow{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--terracotta);font-weight:800}
+    h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(2.7rem,6vw,5.9rem);line-height:.88;margin:.18em 0;color:var(--navy);font-weight:500}
+    .lead{font-size:clamp(1.1rem,2vw,1.45rem);max-width:680px;margin:16px 0 0;color:#2b3f51}
+    .hero-card{
+      align-self:end;
+      justify-self:end;
+      max-width:360px;
+      background:rgba(255,253,248,.94);
+      border:1px solid rgba(186,126,44,.4);
+      border-radius:22px;
+      padding:20px;
+      box-shadow:0 12px 30px rgba(0,0,0,.1);
+      backdrop-filter:blur(12px);
+    }
+    .hero-card h2{margin:0 0 8px;font-family:Georgia,serif;color:var(--navy);font-size:1.45rem}
+    .hero-card p{margin:5px 0;color:#3d4f5c}
+    .quick-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      border:none;border-radius:999px;padding:12px 17px;text-decoration:none;cursor:pointer;font-weight:750;
+      background:var(--navy);color:white;box-shadow:0 8px 20px rgba(11,53,91,.18)
+    }
+    .btn.secondary{background:rgba(255,255,255,.9);color:var(--navy);border:1px solid rgba(11,53,91,.2)}
+    .btn.orange{background:var(--terracotta)}
+    .tabs-wrap{position:sticky;top:0;z-index:20;padding:16px 0 12px;background:linear-gradient(180deg,rgba(248,243,232,.98),rgba(248,243,232,.84),transparent)}
+    .tabs{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:7px;
+      border-radius:20px;background:rgba(255,253,248,.94);border:1px solid rgba(11,53,91,.12);box-shadow:0 12px 28px rgba(11,53,91,.10);
+      backdrop-filter:blur(16px)
+    }
+    .tab{
+      border:0;background:transparent;color:var(--navy);padding:14px 12px;border-radius:14px;font-weight:850;cursor:pointer
+    }
+    .tab[aria-selected="true"]{background:var(--navy);color:#fff;box-shadow:0 7px 18px rgba(11,53,91,.22)}
+    .panel{display:none;animation:fade .25s ease}
+    .panel.active{display:block}
+    @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin:28px 4px 18px}
+    .section-head h2{font-family:Georgia,serif;color:var(--navy);font-size:clamp(2rem,4vw,3.3rem);font-weight:500;margin:0}
+    .section-head p{margin:0;color:var(--muted);max-width:540px}
+    .grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(320px,.88fr);gap:20px}
+    .card{
+      background:rgba(255,253,248,.96);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden
+    }
+    .card-pad{padding:22px}
+    .card-title{display:flex;align-items:center;gap:10px;color:var(--navy);font-weight:900;margin:0 0 14px}
+    .card-title .icon{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--lake-2);font-size:1.2rem}
+    .timeline{position:relative;padding:8px 0}
+    .timeline:before{content:"";position:absolute;left:78px;top:24px;bottom:24px;width:2px;background:linear-gradient(var(--terracotta),var(--navy),var(--green));opacity:.45}
+    .stop{display:grid;grid-template-columns:64px 40px 1fr;gap:14px;position:relative;padding:12px 0}
+    .time{font-weight:850;color:var(--navy);text-align:right;padding-top:8px;font-variant-numeric:tabular-nums}
+    .dot{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:white;font-weight:900;z-index:2;box-shadow:0 6px 14px rgba(11,53,91,.22)}
+    .dot.orange{background:var(--terracotta)}.dot.green{background:var(--green)}.dot.gold{background:var(--gold)}
+    .stop-body{padding:7px 0 13px}
+    .stop-body strong{display:block;font-size:1.05rem}
+    .stop-body p{margin:5px 0;color:#50606c}
+    .mini-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}
+    .mini{
+      display:inline-flex;gap:6px;align-items:center;text-decoration:none;border:1px solid rgba(11,53,91,.18);border-radius:999px;padding:7px 10px;background:white;color:var(--navy);font-weight:750;font-size:.86rem
+    }
+    .map-card{min-height:640px;position:relative;background:linear-gradient(180deg,#eff7f3,#d9edf4)}
+    .map-card:before{
+      content:"";position:absolute;inset:0;opacity:.32;
+      background-image:linear-gradient(rgba(11,53,91,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(11,53,91,.10) 1px,transparent 1px);
+      background-size:38px 38px;transform:rotate(-5deg) scale(1.15)
+    }
+    .map-inner{position:relative;min-height:640px;padding:24px;overflow:hidden}
+    .lake-shape{position:absolute;right:-80px;bottom:-130px;width:72%;height:72%;border-radius:48% 52% 0 0;background:linear-gradient(145deg,#b6deed,#75b8d6);transform:rotate(-8deg);box-shadow:inset 0 0 0 8px rgba(255,255,255,.42)}
+    .route-svg{position:absolute;inset:0;width:100%;height:100%}
+    .map-label{position:absolute;padding:8px 10px;border-radius:12px;background:rgba(255,253,248,.93);border:1px solid rgba(11,53,91,.14);box-shadow:0 6px 14px rgba(11,53,91,.13);font-size:.82rem;font-weight:850;color:var(--navy);max-width:145px}
+    .map-label.hotel{background:var(--navy);color:#fff}
+    .legend{position:absolute;left:18px;bottom:18px;right:18px;background:rgba(255,253,248,.93);padding:12px;border-radius:15px;border:1px solid rgba(11,53,91,.16);display:flex;gap:8px;flex-wrap:wrap;font-size:.8rem}
+    .legend span{display:inline-flex;gap:6px;align-items:center}.swatch{width:11px;height:11px;border-radius:50%;display:inline-block}
+    .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px}
+    .feature{padding:20px;border-radius:18px;background:rgba(255,253,248,.95);border:1px solid var(--line);box-shadow:0 12px 28px rgba(11,53,91,.08)}
+    .feature h3{margin:0 0 8px;color:var(--navy)}
+    .feature p{margin:0;color:var(--muted)}
+    .image-card{position:relative;min-height:270px;background-size:cover;background-position:center;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line)}
+    .image-card:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(5,27,45,.78),transparent 65%)}
+    .image-card .caption{position:absolute;left:22px;right:22px;bottom:20px;z-index:2;color:#fff}
+    .image-card .caption h3{font-family:Georgia,serif;font-size:1.7rem;margin:0 0 4px}
+    .image-card .caption p{margin:0;color:rgba(255,255,255,.9)}
+    .instruction-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    details{background:rgba(255,253,248,.96);border:1px solid var(--line);border-radius:18px;padding:0 18px;box-shadow:0 10px 24px rgba(11,53,91,.07)}
+    summary{cursor:pointer;font-weight:900;color:var(--navy);padding:18px 0;display:flex;align-items:center;justify-content:space-between;gap:10px;list-style:none}
+    summary::-webkit-details-marker{display:none}
+    summary:after{content:"+";font-size:1.4rem;color:var(--terracotta)}details[open] summary:after{content:"–"}
+    details .detail-body{padding:0 0 18px;color:#455867}
+    .checklist{display:grid;gap:10px}
+    .checkitem{display:flex;align-items:flex-start;gap:11px;padding:12px;border-radius:14px;background:#fff;border:1px solid rgba(11,53,91,.11);cursor:pointer}
+    .checkitem input{margin-top:3px;width:18px;height:18px;accent-color:var(--green)}
+    .checkitem.done span{text-decoration:line-through;color:#89949b}
+    .poster-toggle{margin-top:20px;text-align:center}
+    .poster{display:none;margin:18px auto 0;max-width:100%;border-radius:18px;box-shadow:var(--shadow);border:1px solid var(--line)}
+    .poster.show{display:block}
+    .note{padding:15px 17px;border-left:5px solid var(--terracotta);background:#fff5eb;border-radius:0 14px 14px 0;color:#674126;margin:14px 0}
+    .footer{margin-top:36px;text-align:center;color:#627584;font-size:.9rem}
+    .small{font-size:.84rem;color:var(--muted)}
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;min-height:470px;padding:28px;background:linear-gradient(180deg,rgba(255,253,248,.96),rgba(255,253,248,.75) 62%,rgba(255,253,248,.1)),url('assets/lugano-see.jpg') center/cover}
+      .hero-card{justify-self:start;align-self:end}
+      .grid{grid-template-columns:1fr}
+      .map-card,.map-inner{min-height:540px}
+      .feature-grid{grid-template-columns:1fr}
+      .instruction-grid{grid-template-columns:1fr}
+    }
+    @media (max-width:620px){
+      .app{padding:10px 10px 40px}.hero{padding:23px;border-radius:22px}.tabs-wrap{top:0}.tabs{gap:5px}.tab{padding:12px 6px;font-size:.9rem}
+      .section-head{display:block}.section-head p{margin-top:8px}.card-pad{padding:17px}
+      .timeline:before{left:69px}.stop{grid-template-columns:55px 34px 1fr;gap:10px}.dot{width:32px;height:32px;font-size:.86rem}.time{font-size:.82rem}
+      .quick-actions .btn{flex:1}.map-label{font-size:.72rem;padding:6px 8px;max-width:120px}.legend{font-size:.7rem}
+    }
+    @media print{
+      body{background:#fff}.app{max-width:none;padding:0}.hero,.tabs-wrap,.footer,.poster-toggle,.quick-actions{display:none!important}.panel{display:block!important;page-break-after:always}.panel:last-of-type{page-break-after:auto}.card,.feature,.image-card,details{box-shadow:none;break-inside:avoid}.section-head{margin-top:12px}.map-card{min-height:560px}
+    }
+  </style>
+</head>
+<body>
+<main class="app">
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Persönlicher Mini-Reiseführer · 23.–24. Juni 2026</div>
+      <h1>24 Stunden<br>in Lugano</h1>
+      <p class="lead">Solo unterwegs, zentral im Hotel Gabbani, mit viel See, Cafés, Menschen, schönen Plätzen und kurzen Wegen.</p>
+      <div class="quick-actions">
+        <button class="btn" onclick="openTab('tag1')">Tag 1 öffnen</button>
+        <button class="btn secondary" onclick="openTab('anweisungen')">Vorbereitung</button>
+        <button class="btn orange" onclick="window.print()">Druckansicht</button>
+      </div>
+    </div>
+    <aside class="hero-card">
+      <h2>Hotel Gabbani</h2>
+      <p>📍 Piazza Cioccaro 1, Lugano</p>
+      <p>🚞 Direkt an der Standseilbahn</p>
+      <p>🌊 Nur wenige Minuten zum See</p>
+      <p>🧳 Gepäck am Abreisetag deponieren</p>
+      <p class="small">Die Fotos in dieser App sind gestaltete Illustrationen.</p>
+    </aside>
+  </section>
+
+  <div class="tabs-wrap">
+    <nav class="tabs" role="tablist" aria-label="Reisetage">
+      <button class="tab" role="tab" aria-selected="true" data-tab="tag1">Tag 1</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="tag2">Tag 2</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="anweisungen">Tips &amp; Tricks</button>
+    </nav>
+  </div>
+
+  <section id="tag1" class="panel active" role="tabpanel">
+    <div class="section-head">
+      <div><div class="eyebrow">Dienstag, 23.06.2026</div><h2>Ankommen, See & Abend</h2></div>
+      <p>So würde ich mir den ersten Lugano-Nachmittag notieren: entspannt ankommen, viel See mitnehmen und den Abend allein, aber mitten im Leben ausklingen lassen.</p>
+    </div>
+    <div class="grid">
+      <article class="card card-pad">
+        <h3 class="card-title"><span class="icon">🕒</span> Mein recherchierter Ablauf</h3>
+        <div class="timeline">
+          <div class="stop"><div class="time">12:00</div><div class="dot orange">1</div><div class="stop-body"><strong>Abflug Stuttgart</strong><p>Privatflug in einer Cirrus SR22 mit meinem Freund Jo von Stuttgart über den Bodensee – Säntis – Rheintal – San Bernardino – Lugano.</p></div></div>
+          <div class="stop"><div class="time">ca. 13:30</div><div class="dot orange">2</div><div class="stop-body"><strong>Landung in Agno</strong><p>Nach meinen Recherchen sind es vom Terminal ungefähr 10 Minuten zu Fuß bis zur Station Agno FLP – für die kurze Strecke ideal.</p><div class="mini-actions"><a class="mini" href="https://www.google.com/maps/search/?api=1&query=Agno+FLP" target="_blank">📍 Agno FLP</a></div></div></div>
+          <div class="stop"><div class="time">ca. 14:00</div><div class="dot gold">3</div><div class="stop-body"><strong>S60/FLP nach Lugano</strong><p>Die FLP/S60 wirkt für mich als einfachste Verbindung ins Zentrum. Tagsüber fährt sie in der Regel häufig; die aktuelle Zeit würde ich kurz in SBB Mobile prüfen.</p><div class="mini-actions"><a class="mini" href="https://www.sbb.ch/de" target="_blank">🚆 SBB öffnen</a></div></div></div>
+          <div class="stop"><div class="time">ca. 14:30</div><div class="dot gold">4</div><div class="stop-body"><strong>Standseilbahn zur Piazza Cioccaro</strong><p>Im Bahnhof einfach der Beschilderung „Funicolare / Centro“ folgen. Unten an der Piazza Cioccaro steht man fast direkt vor dem Gabbani.</p></div></div>
+          <div class="stop"><div class="time">ca. 14:45</div><div class="dot">5</div><div class="stop-body"><strong>Check-in im Hotel Gabbani</strong><p>Hier würde ich direkt Gepäck, Ticino Ticket und die Abendplanung erledigen – dann ist der Rest des Nachmittags frei.</p><div class="mini-actions"><a class="mini" href="https://www.google.com/maps/search/?api=1&query=Hotel+Gabbani+Lugano" target="_blank">🏨 Hotel öffnen</a></div></div></div>
+          <div class="stop"><div class="time">15:15</div><div class="dot">6</div><div class="stop-body"><strong>Piazza della Riforma</strong><p>Für mich der beste Ankommensort: Kaffee, Wasser, ein bisschen Leute beobachten und Lugano erst einmal wirken lassen.</p><div class="mini-actions"><a class="mini" href="https://www.google.com/maps/search/?api=1&query=Piazza+della+Riforma+Lugano" target="_blank">☕ Karte</a></div></div></div>
+          <div class="stop"><div class="time">16:00</div><div class="dot">7</div><div class="stop-body"><strong>Via Nassa, Seeufer & Parco Ciani</strong><p>Diese Runde passt nach meinen Recherchen besonders gut: Arkaden, Seeufer und Parco Ciani – alles angenehm kompakt und ohne Hektik.</p><div class="mini-actions"><a class="mini" href="https://www.google.com/maps/dir/?api=1&origin=Hotel+Gabbani+Lugano&destination=Parco+Ciani+Lugano&waypoints=Piazza+della+Riforma+Lugano%7CVia+Nassa+Lugano&travelmode=walking" target="_blank">🚶 Route öffnen</a></div></div></div>
+          <div class="stop"><div class="time">17:30</div><div class="dot green">8</div><div class="stop-body"><strong>Optionale E‑Bike-Runde</strong><p>Wenn noch Energie da ist, wirkt diese kleine Runde am Wasser ideal. Bei großer Hitze würde ich einfach an der Foce umdrehen.</p><div class="mini-actions"><a class="mini" href="https://www.publibike.ch/en/map" target="_blank">🚲 Stationen</a></div></div></div>
+          <div class="stop"><div class="time">19:30</div><div class="dot orange">9</div><div class="stop-body"><strong>Antica Osteria del Porto</strong><p>Nach meiner Recherche einer der stimmungsvollsten Plätze für den Abend: nah am Wasser, lebendig und auch allein sehr angenehm.</p><div class="mini-actions"><a class="mini" href="https://www.google.com/maps/search/?api=1&query=Antica+Osteria+del+Porto+Lugano" target="_blank">🍽️ Restaurant</a></div></div></div>
+          <div class="stop"><div class="time">ab 21:30</div><div class="dot">10</div><div class="stop-body"><strong>Ruhiger Rückweg</strong><p>Je nach Stimmung am See entlang oder gemütlich durchs belebte Zentrum zurück – beides ist von dort aus unkompliziert.</p></div></div>
+        </div>
+      </article>
+
+      <aside class="card map-card">
+        <div class="map-inner">
+          <svg class="base-map" viewBox="0 0 500 680" aria-hidden="true">
+            <rect x="0" y="0" width="500" height="680" fill="#f6efe1"/>
+            <path class="road" d="M110 45 C140 95 165 145 185 195 S220 285 255 318"/>
+            <path class="road" d="M190 205 C175 255 168 315 178 385 S210 520 260 595"/>
+            <path class="road minor" d="M225 210 C255 238 290 268 330 312"/>
+            <path class="road minor" d="M218 270 C260 290 300 320 345 368"/>
+            <path class="road minor" d="M210 360 C245 390 285 432 330 480"/>
+            <rect class="park" x="220" y="330" width="92" height="130" rx="22"/>
+            <rect class="block" x="160" y="150" width="58" height="38" rx="10"/>
+            <rect class="block" x="230" y="245" width="64" height="36" rx="10"/>
+            <rect class="block" x="315" y="420" width="62" height="42" rx="10"/>
+            <path class="waterline" d="M95 470 C160 430 230 445 290 470"/>
+          </svg>
+          <div class="lake-shape"></div>
+          <svg class="route-svg" viewBox="0 0 500 680" aria-label="Schematischer Routenplan Tag 1">
+            <path d="M140 70 C160 120 165 150 190 190 S210 250 255 280 S305 315 325 365 S345 455 395 520" fill="none" stroke="#c75d22" stroke-width="8" stroke-linecap="round" stroke-dasharray="10 13"/>
+            <path d="M190 190 C155 255 150 345 205 430 S280 540 350 590" fill="none" stroke="#0b355b" stroke-width="7" stroke-linecap="round" stroke-dasharray="8 12"/>
+            <circle cx="140" cy="70" r="11" fill="#ba7e2c"/><circle cx="190" cy="190" r="11" fill="#0b355b"/><circle cx="255" cy="280" r="11" fill="#0b355b"/><circle cx="325" cy="365" r="11" fill="#2d765b"/><circle cx="395" cy="520" r="11" fill="#c75d22"/>
+          </svg>
+          <div class="map-label" style="left:18%;top:5%">Lugano FLP</div>
+          <div class="map-label" style="left:10%;top:14%;background:#fff8ec">Funicolare</div>
+          <div class="map-label hotel" style="left:28%;top:24%">Hotel Gabbani</div>
+          <div class="map-label" style="left:44%;top:37%">Piazza della Riforma</div>
+          <div class="map-label" style="left:47%;top:52%">Parco Ciani</div>
+          <div class="map-label" style="right:4%;top:68%">Antica Osteria del Porto</div>
+          <div class="legend"><span><i class="swatch" style="background:#c75d22"></i>Anreise & Abend</span><span><i class="swatch" style="background:#0b355b"></i>Spaziergang</span><span><i class="swatch" style="background:#2d765b"></i>E‑Bike</span></div>
+        </div>
+      </aside>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature"><h3>☕ Solo-freundlich</h3><p>Piazza, Park und Osteria wirken auch allein sehr stimmig, weil man eher Teil des Stadtlebens ist als „allein am Tisch“ sitzt.</p></div>
+      <div class="feature"><h3>🌊 Viel See</h3><p>Fast alles bleibt in Seenähe und ohne große Transfers – genau das gefällt mir an dieser kurzen Lugano-Version.</p></div>
+      <div class="feature"><h3>🌡️ Hitzeflexibel</h3><p>Bei großer Hitze ließe sich die E‑Bike-Runde jederzeit kürzen; Parco Ciani oder ein längerer Stopp am Wasser passen dann besser.</p></div>
+    </div>
+
+    <div class="image-card" style="background-image:url('assets/osteria-illustration.jpg');margin-top:20px">
+      <div class="caption"><h3>Antica Osteria del Porto</h3><p>Der passende Tagesabschluss nach der See- und Foce-Runde.</p></div>
+    </div>
+
+    <div class="poster-toggle"><button class="btn secondary" onclick="togglePoster('poster1',this)">Gestaltete Übersicht einblenden</button><img id="poster1" class="poster" src="assets/poster-tag1.png" alt="Gestaltete Übersicht Tag 1"></div>
+  </section>
+
+  <section id="tag2" class="panel" role="tabpanel">
+    <div class="section-head">
+      <div><div class="eyebrow">Mittwoch, 24.06.2026</div><h2>Vormittag am See & Abreise</h2></div>
+      <p>Für den Abreisetag würde ich es bewusst leicht halten: ein schöner Vormittag am See, eventuell eine kurze Bootsrunde und trotzdem genug Reserve für den Rückflug.</p>
+    </div>
+    <div class="grid">
+      <article class="card card-pad">
+        <h3 class="card-title"><span class="icon">☀️</span> Mein Plan für den Abreisetag</h3>
+        <div class="timeline">
+          <div class="stop"><div class="time">08:00</div><div class="dot orange">1</div><div class="stop-body"><strong>Frühstück im Gabbani oder auf der Piazza</strong><p>Gemütlich starten und nebenbei schauen, wie Schiff, Wetter und Tagesform zusammenpassen.</p></div></div>
+          <div class="stop"><div class="time">09:00</div><div class="dot orange">2</div><div class="stop-body"><strong>Morgenrunde: Piazza – Via Nassa – LAC</strong><p>Nach meiner Recherche ist das die schönste Zeit für die südliche Uferseite – bevor es heißer und voller wird.</p><div class="mini-actions"><a class="mini" href="https://www.google.com/maps/dir/?api=1&origin=Hotel+Gabbani+Lugano&destination=Hotel+Gabbani+Lugano&waypoints=Piazza+della+Riforma+Lugano%7CVia+Nassa+Lugano%7CLAC+Lugano&travelmode=walking" target="_blank">🚶 Runde öffnen</a></div></div></div>
+          <div class="stop"><div class="time">10:00</div><div class="dot gold">3</div><div class="stop-body"><strong>Zurück zum Hotel</strong><p>So würde ich es machen: auschecken, Gepäck sicher an der Rezeption lassen und nur mit kleiner Tasche weiterziehen.</p></div></div>
+          <div class="stop"><div class="time">10:30</div><div class="dot">4</div><div class="stop-body"><strong>Option: kurze Schifffahrt</strong><p>Wenn es zeitlich passt, finde ich eine kleine Seerundfahrt oder Lugano–Gandria–Lugano sehr reizvoll – aber nur mit einer Verbindung, die sicher bis Mittag zurück ist.</p><div class="mini-actions"><a class="mini" href="https://www.google.com/maps/search/?api=1&query=Lugano+Giardino+Schiff" target="_blank">⛴️ Anleger</a></div></div></div>
+          <div class="stop"><div class="time">12:00</div><div class="dot">5</div><div class="stop-body"><strong>Leichter Lunch</strong><p>Im Zentrum oder direkt bei Gabbani – nach meinem Gefühl lieber etwas Leichtes und dafür entspannt mit Zeitreserve.</p></div></div>
+          <div class="stop"><div class="time">12:45</div><div class="dot green">6</div><div class="stop-body"><strong>Gepäck holen</strong><p>Hier würde ich noch einmal Wasser auffüllen, Akku und Powerbank checken und den Ticino-Ticket-QR-Code bereitlegen.</p></div></div>
+          <div class="stop"><div class="time">13:00</div><div class="dot green">7</div><div class="stop-body"><strong>Richtung Flughafen</strong><p>Nach meiner Recherche ist die entspannteste Standardroute: mit der Standseilbahn hoch zum Bahnhof, dann mit der S60 nach Agno und von dort in rund 10 Minuten zu Fuß zum Flughafen. Falls es sehr heiß ist oder sich der Zeitplan verschiebt, bleibt ein Taxi ab Hotel die bequemste Reserve.</p><div class="mini-actions"><a class="mini" href="https://www.google.com/maps/dir/?api=1&origin=Hotel+Gabbani+Lugano&destination=Lugano+Airport&travelmode=transit" target="_blank">🚆 ÖV-Route</a><a class="mini" href="https://www.google.com/maps/dir/?api=1&origin=Hotel+Gabbani+Lugano&destination=Lugano+Airport&travelmode=driving" target="_blank">🚕 Taxi-Route</a></div></div></div>
+          <div class="stop"><div class="time">15:00–16:00</div><div class="dot orange">8</div><div class="stop-body"><strong>Geplanter Rückflug</strong><p>Mit angenehmer Reserve für Wetter, Abfertigung und eventuelle Änderungen am privaten Rückflug.</p></div></div>
+        </div>
+      </article>
+
+      <aside class="card map-card">
+        <div class="map-inner">
+          <svg class="base-map" viewBox="0 0 500 680" aria-hidden="true">
+            <rect x="0" y="0" width="500" height="680" fill="#f6efe1"/>
+            <path class="road" d="M125 55 C150 88 168 108 192 138"/>
+            <path class="road" d="M198 136 C230 175 255 225 282 285 S325 348 360 430"/>
+            <path class="road minor" d="M212 205 C250 225 290 258 332 300"/>
+            <path class="road minor" d="M255 320 C225 382 225 455 300 505"/>
+            <path class="road minor" d="M320 490 C360 520 405 500 410 440"/>
+            <rect class="block" x="168" y="108" width="64" height="38" rx="10"/>
+            <rect class="block" x="256" y="250" width="64" height="38" rx="10"/>
+            <rect class="block" x="344" y="402" width="60" height="40" rx="10"/>
+            <rect class="park" x="270" y="292" width="62" height="76" rx="20"/>
+            <path class="waterline" d="M210 430 C260 410 322 417 370 438"/>
+          </svg>
+          <div class="lake-shape" style="right:-110px;bottom:-180px;width:82%;height:80%"></div>
+          <svg class="route-svg" viewBox="0 0 500 680" aria-label="Schematischer Routenplan Tag 2">
+            <path d="M195 135 C230 175 255 230 285 285 S330 350 365 430" fill="none" stroke="#c75d22" stroke-width="8" stroke-linecap="round" stroke-dasharray="10 13"/>
+            <path d="M285 285 C230 350 225 470 330 520 C405 555 410 430 365 430" fill="none" stroke="#0b78a9" stroke-width="7" stroke-linecap="round" stroke-dasharray="9 12"/>
+            <path d="M195 135 C165 95 145 70 125 45" fill="none" stroke="#5b377f" stroke-width="7" stroke-linecap="round" stroke-dasharray="8 11"/>
+            <circle cx="195" cy="135" r="11" fill="#0b355b"/><circle cx="285" cy="285" r="11" fill="#c75d22"/><circle cx="365" cy="430" r="11" fill="#0b78a9"/><circle cx="125" cy="45" r="11" fill="#5b377f"/>
+          </svg>
+          <div class="map-label hotel" style="left:27%;top:17%">Hotel Gabbani</div>
+          <div class="map-label" style="left:48%;top:39%">Via Nassa / LAC</div>
+          <div class="map-label" style="left:38%;top:48%;background:#fff8ec">Lungolago</div>
+          <div class="map-label" style="right:5%;top:59%">Lugano Giardino / Schiff</div>
+          <div class="map-label" style="left:14%;top:4%">Lugano FLP → Agno</div>
+          <div class="legend"><span><i class="swatch" style="background:#c75d22"></i>Morgenrunde</span><span><i class="swatch" style="background:#0b78a9"></i>Schiff</span><span><i class="swatch" style="background:#5b377f"></i>Rückfahrt</span></div>
+        </div>
+      </aside>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature"><h3>⛴️ Boot nur mit Puffer</h3><p>Die Schifffahrt wäre für mich ein schöner Bonus – wichtig ist nur, dass die Rückkehr nach Lugano spätestens gegen Mittag klappt.</p></div>
+      <div class="feature"><h3>🧳 Gepäck im Hotel</h3><p>Genau deshalb würde ich das Gepäck im Hotel lassen – der Vormittag bleibt leicht und unkompliziert.</p></div>
+      <div class="feature"><h3>🚕 Taxi als Sicherheitsoption</h3><p>Gut zu wissen: Die Bahnverbindung ist unkompliziert, und für Hitze, Verspätung oder ein engeres Flugfenster bleibt ein Taxi als bequeme Ausweichlösung.</p></div>
+    </div>
+
+    <div class="poster-toggle"><button class="btn secondary" onclick="togglePoster('poster2',this)">Gestaltete Übersicht einblenden</button><img id="poster2" class="poster" src="assets/poster-tag2.png" alt="Gestaltete Übersicht Tag 2"></div>
+  </section>
+
+  <section id="anweisungen" class="panel" role="tabpanel">
+    <div class="section-head">
+      <div><div class="eyebrow">Vorbereitung &amp; unterwegs</div><h2>Tips &amp; Tricks</h2></div>
+      <p>Bezahlen, Apps, Tickets, Reservierungen und die Dinge, die ich mir vorab notieren würde.</p>
+    </div>
+
+    <div class="instruction-grid">
+      <details open><summary>💳 Wise & Bezahlen</summary><div class="detail-body">
+        <p><strong>Nach meinen Recherchen sollte Wise in Lugano im Alltag wie eine normale Visa- oder Mastercard funktionieren.</strong></p>
+        <p>Ich würde am Terminal immer <strong>CHF</strong> auswählen und eine angebotene Umrechnung in Euro ablehnen. Für Hotel, Restaurant, SBB-App und PubliBike sollte kontaktloses Bezahlen gut funktionieren.</p>
+        <div class="note">Notiert hätte ich mir außerdem: eine zweite Karte und ungefähr 30–50 CHF Bargeld als kleine Reserve.</div>
+      </div></details>
+
+      <details open><summary>🚆 SBB, S60 & Ticino Ticket</summary><div class="detail-body">
+        <p>Für die erste Fahrt vom Flughafen zum Hotel würde ich SBB Mobile oder notfalls den Automaten einplanen. Praktisch wäre es, das Hotel schon vorher zu fragen, ob das Ticino Ticket eventuell digital vorab geschickt werden kann.</p>
+        <p>Nach dem Check-in würde ich das Ticino Ticket direkt aktivieren lassen und den QR-Code als Screenshot speichern. Für die Rückfahrt nach Agno sollte dann normalerweise kein neues Ticket nötig sein.</p>
+      </div></details>
+
+      <details><summary>🚲 PubliBike Velospot</summary><div class="detail-body">
+        <p>Ich würde die App vorab installieren, ein Konto anlegen und die Wise-Karte hinterlegen. In der Kartenansicht sieht man dann verfügbare E‑Bikes und Rückgabestationen.</p>
+        <p>Vor der Fahrt würde ich kurz Akku, Bremsen und Sattelhöhe prüfen. Am Ende sicherheitshalber noch einmal schauen, ob die Rückgabe in der App wirklich beendet wurde.</p>
+      </div></details>
+
+      <details><summary>🗺️ Google Maps & Offline-Navigation</summary><div class="detail-body">
+        <p>Ich würde in Google Maps auf jeden Fall Hotel Gabbani, Agno FLP, Lugano FLP, Piazza della Riforma, Parco Ciani, Foce del Cassarate, LAC, den Schiffsanleger und die Antica Osteria del Porto abspeichern.</p>
+        <p>Den Bereich Lugano–Agno würde ich zusätzlich als Offlinekarte laden. Die Routenbuttons in dieser App öffnen die jeweiligen Ziele direkt in Google Maps.</p>
+      </div></details>
+
+      <details><summary>📱 Roaming & Akku</summary><div class="detail-body">
+        <p>Ein Punkt, den ich wirklich prüfen würde: ob der eigene Mobilfunktarif die Schweiz einschließt. Schweizer Roaming ist bei vielen EU-Tarifen nicht automatisch dabei.</p>
+        <p>Powerbank, Ladekabel und eine gespeicherte Offlinekarte würde ich sicherheitshalber dabeihaben. SBB-, Hotel- und Ticket-Screenshots am besten vorher sichern.</p>
+      </div></details>
+
+      <details><summary>🍽️ Restaurant & Boot</summary><div class="detail-body">
+        <p>Die Antica Osteria del Porto würde ich für Dienstag gegen 19:30 Uhr reservieren. Beim Hotel würde ich zusätzlich Frühstück, Gepäckaufbewahrung und das Ticino Ticket bestätigen.</p>
+        <p>Den Schiffsfahrplan würde ich erst kurz vorher live prüfen. Ich würde keine Verbindung wählen, die die Rückkehr nach Lugano über Mittag hinaus verschiebt.</p>
+      </div></details>
+    </div>
+
+    <div class="grid" style="margin-top:20px">
+      <article class="card card-pad">
+        <h3 class="card-title"><span class="icon">✅</span> Deine Abhakliste</h3>
+        <div class="checklist" id="checklist">
+          <label class="checkitem"><input type="checkbox" data-key="hotel"><span>Hotel Gabbani verbindlich buchen</span></label>
+          <label class="checkitem"><input type="checkbox" data-key="ticino"><span>Beim Hotel nach digitalem Ticino Ticket fragen</span></label>
+          <label class="checkitem"><input type="checkbox" data-key="restaurant"><span>Antica Osteria del Porto reservieren</span></label>
+          <label class="checkitem"><input type="checkbox" data-key="sbb"><span>SBB Mobile installieren und Zahlungsmittel hinterlegen</span></label>
+          <label class="checkitem"><input type="checkbox" data-key="publibike"><span>PubliBike Velospot installieren und registrieren</span></label>
+          <label class="checkitem"><input type="checkbox" data-key="maps"><span>Google Maps Offlinekarte Lugano–Agno laden</span></label>
+          <label class="checkitem"><input type="checkbox" data-key="wise"><span>Wise-Karte, Reservekarte und CHF-Bargeld vorbereiten</span></label>
+          <label class="checkitem"><input type="checkbox" data-key="roaming"><span>Schweiz-Roaming prüfen</span></label>
+          <label class="checkitem"><input type="checkbox" data-key="power"><span>Powerbank, Ladekabel, Sonnencreme und Wasser einpacken</span></label>
+          <label class="checkitem"><input type="checkbox" data-key="ship"><span>Schiffsfahrplan kurz vor der Reise prüfen</span></label>
+        </div>
+      </article>
+
+      <aside class="card card-pad">
+        <h3 class="card-title"><span class="icon">📌</span> Apps & gespeicherte Orte</h3>
+        <div class="mini-actions" style="margin-bottom:16px">
+          <a class="btn" href="https://www.sbb.ch/de" target="_blank">SBB</a>
+          <a class="btn secondary" href="https://www.publibike.ch/en/home" target="_blank">PubliBike</a>
+          <a class="btn orange" href="https://maps.google.com" target="_blank">Google Maps</a>
+        </div>
+        <p><strong>Speichern:</strong> Hotel Gabbani · Agno FLP · Lugano FLP · Piazza della Riforma · Via Nassa · Parco Ciani · Foce del Cassarate · LAC · Lugano Giardino · Antica Osteria del Porto · Lugano Airport.</p>
+        <div class="note">Gerade bei so einem Solo-Trip finde ich eine kleine Powerbank hilfreich: Navigation, Tickets und Bezahlung hängen unterwegs fast komplett am Smartphone.</div>
+      </aside>
+    </div>
+  </section>
+
+  <div class="footer">Lugano Solo Trip App V1.1 · Persönliche Recherchen · Für Smartphone und Ausdruck optimiert</div>
+</main>
+<script>
+  const tabs=[...document.querySelectorAll('.tab')];
+  const panels=[...document.querySelectorAll('.panel')];
+  function openTab(id){
+    tabs.forEach(t=>t.setAttribute('aria-selected',String(t.dataset.tab===id)));
+    panels.forEach(p=>p.classList.toggle('active',p.id===id));
+    window.scrollTo({top:document.querySelector('.tabs-wrap').offsetTop-4,behavior:'smooth'});
+    history.replaceState(null,'','#'+id);
+  }
+  tabs.forEach(t=>t.addEventListener('click',()=>openTab(t.dataset.tab)));
+  if(location.hash && document.querySelector(location.hash)) openTab(location.hash.slice(1));
+  function togglePoster(id,btn){
+    const el=document.getElementById(id); el.classList.toggle('show');
+    btn.textContent=el.classList.contains('show')?'Gestaltete Übersicht ausblenden':'Gestaltete Übersicht einblenden';
+  }
+  document.querySelectorAll('.checkitem input').forEach(input=>{
+    const key='lugano_'+input.dataset.key;
+    input.checked=localStorage.getItem(key)==='1';
+    input.closest('.checkitem').classList.toggle('done',input.checked);
+    input.addEventListener('change',()=>{
+      localStorage.setItem(key,input.checked?'1':'0');
+      input.closest('.checkitem').classList.toggle('done',input.checked);
+    });
+  });
+</script>
+</body>
+</html>
